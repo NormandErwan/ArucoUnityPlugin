@@ -1,5 +1,8 @@
 # ArucoUnity's Plugin
 
+[![Travis Build Status](https://api.travis-ci.org/NormandErwan/ArucoUnityPlugin.svg?branch=master)](https://travis-ci.org/NormandErwan/ArucoUnityPlugin)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/hp4hlv0dnv6mutg6?svg=true)](https://ci.appveyor.com/project/NormandErwan/arucounityplugin)
+
 Bring augmented reality to Unity by tracking [ArUco markers](https://docs.opencv.org/master/d5/dae/tutorial_aruco_detection.html) in real time.
 
 This repository contains sources of the ArucoUnity's Plugin. The plugin wraps into a C interface some OpenCV modules (coded in C++). It allows [ArucoUnity](https://github.com/NormandErwan/ArucoUnity) use them in C# code.
