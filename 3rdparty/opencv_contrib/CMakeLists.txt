@@ -26,6 +26,9 @@ ExternalProject_Add(${PROJECT_NAME}
   GIT_REPOSITORY https://github.com/opencv/opencv.git
   CMAKE_ARGS
     -DOPENCV_EXTRA_MODULES_PATH=${OPENCV_CONTRIB_PATH}/modules
+    -DBUILD_JAVA=OFF
+    -DBUILD_TESTS=OFF
+    -DBUILD_PERF_TESTS=OFF
     -DBUILD_opencv_apps=OFF
     -DBUILD_opencv_aruco=ON
     -DBUILD_opencv_bgsegm=OFF
