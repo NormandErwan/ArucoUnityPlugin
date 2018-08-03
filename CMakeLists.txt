@@ -11,7 +11,7 @@ set(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 # Configuration
 
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}" CACHE PATH "Install path prefix" FORCE)
+  set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install" CACHE PATH "Install path prefix" FORCE)
 endif()
 
 if(NOT OpenCV_DIR)
@@ -29,9 +29,9 @@ endif()
 set(PROJECT_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include" CACHE INTERNAL "The includes directory")
 set(PROJECT_SOURCE_DIR "${CMAKE_SOURCE_DIR}/src" CACHE INTERNAL "The sources directory")
 
-set(ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_INSTALL_PREFIX}/lib") # Destination of the corresponding import libraries of the dlls for dll platform
-set(LIBRARY_OUTPUT_DIRECTORY "${CMAKE_INSTALL_PREFIX}/lib") # Destination of the librairies for non-dll platform
-set(RUNTIME_OUTPUT_DIRECTORY "${CMAKE_INSTALL_PREFIX}/bin") # Destination of the dll for dll platform
+set(ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_INSTALL_PREFIX}/lib") # Destination of the corresponding import libraries of the dlls for dll platforms
+set(LIBRARY_OUTPUT_DIRECTORY "${CMAKE_INSTALL_PREFIX}/lib") # Destination of the librairies for non-dll platforms
+set(RUNTIME_OUTPUT_DIRECTORY "${CMAKE_INSTALL_PREFIX}/bin") # Destination of the dll for dll platforms
 
 set(ArucoUnity_PLUGINS_DIR "${ArucoUnity_DIR}/Assets/ArucoUnity/Plugins/x64") # The Unity project directory where the compiled plugin will be installed
 
@@ -114,13 +114,13 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 
 # Installation
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS ${PROJECT_NAME} # Installation of the lib
         ARCHIVE DESTINATION ${ARCHIVE_OUTPUT_DIRECTORY}
         LIBRARY DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}
         RUNTIME DESTINATION ${RUNTIME_OUTPUT_DIRECTORY}
 )
+install(DIRECTORY ${PROJECT_INCLUDE_DIR} DESTINATION ${CMAKE_INSTALL_PREFIX}) # Installation of the headers
 install(TARGETS ${PROJECT_NAME} # Installation of the library in the Unity project folder
-        ARCHIVE DESTINATION ${ArucoUnity_PLUGINS_DIR}
         LIBRARY DESTINATION ${ArucoUnity_PLUGINS_DIR}
         RUNTIME DESTINATION ${ArucoUnity_PLUGINS_DIR}
 )
@@ -129,12 +129,10 @@ if(WIN32) # Installation of the OpenCV dlls
   install(FILES ${OpenCV_RUNTIME_LIBS} DESTINATION ${ArucoUnity_PLUGINS_DIR})
 elseif(UNIX) # Installation of the OpenCV libs
   list(GET OpenCV_INCLUDE_DIRS 0 OpenCV_INCLUDE_DIR)
-  file(GLOB_RECURSE OpenCV_RUNTIME_LIBS ${OpenCV_INCLUDE_DIR}/../lib64/*.so)
+  file(GLOB_RECURSE OpenCV_RUNTIME_LIBS FOLLOW_SYMLINKS ${OpenCV_INCLUDE_DIR}/../lib64/*.so)
   install(FILES ${OpenCV_RUNTIME_LIBS} DESTINATION ${ArucoUnity_PLUGINS_DIR})
 endif()
 
 # Package
 configure_file("${CMAKE_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake"
                "${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}Config.cmake" @ONLY)
-install(FILES "${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}Config.cmake"
-        DESTINATION ${LIBRARY_OUTPUT_DIRECTORY}/cmake/)
