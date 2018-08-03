@@ -1,5 +1,3 @@
 language: cpp
-install:
-  - mkdir -p build/opencv/ && cd build/opencv/ && cmake -DCMAKE_INSTALL_PREFIX=install/ -G "Unix Makefiles" ../../3rdparty/opencv_contrib/ && make -j5 && cd ../../
-build:
-  - cd build/ && cmake -DCMAKE_INSTALL_PREFIX=.. -DOpenCV_DIR=../../build/opencv/install/ -DArucoUnity_DIR=.. -G "Unix Makefiles" .. && make -j5
+install: mkdir -p build/opencv/ && cd build/opencv/ && cmake -DCMAKE_INSTALL_PREFIX=install/ -G "Unix Makefiles" ../../3rdparty/opencv_contrib/ && make -j5 && cd ../../
+build: cd build/ && cmake -DCMAKE_INSTALL_PREFIX=.. -DOpenCV_DIR=build/opencv/install/ -DArucoUnity_DIR=.. -G "Unix Makefiles" .. && make -j5

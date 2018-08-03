@@ -1,4 +1,2 @@
-install:
-  - mkdir -p build/opencv/ && cd build/opencv/ && cmake -DCMAKE_INSTALL_PREFIX=install/ -G "Visual Studio 15 2017 Win64" ../../3rdparty/opencv_contrib/ && cmake --build . --config Release && cd ../../
-build_script:
-  - cd build/ && cmake -DCMAKE_INSTALL_PREFIX=.. -DOpenCV_DIR=../../build/opencv/install/ -DArucoUnity_DIR=.. -G "Visual Studio 15 2017 Win64" .. && cmake --build . --config Release --target INSTALL
+install: mkdir build/opencv/ && cd build/opencv/ && cmake -DCMAKE_INSTALL_PREFIX=install/ -G "Visual Studio 15 2017 Win64" ../../3rdparty/opencv_contrib/ && cmake --build . --config Release && cd ../../
+build_script: cd build/ && cmake -DCMAKE_INSTALL_PREFIX=.. -DOpenCV_DIR=build/opencv/install/ -DArucoUnity_DIR=.. -G "Visual Studio 15 2017 Win64" .. && cmake --build . --config Release --target INSTALL
