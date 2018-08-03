@@ -10,15 +10,21 @@ set(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 
 # Configuration
 
-if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}" CACHE PATH "Install path prefix" FORCE)
 endif()
 
-if (NOT OpenCV_DIR)
-  set(OpenCV_DIR "${CMAKE_BINARY_DIR}/opencv/install" CACHE PATH "OpenCV install directory" FORCE)
+if(NOT OpenCV_DIR)
+  if(WIN32)
+    set(OpenCV_DIR "${CMAKE_BINARY_DIR}/opencv/install" CACHE PATH "OpenCV install directory" FORCE)
+  elseif(UNIX)
+    set(OpenCV_DIR "${CMAKE_BINARY_DIR}/opencv/install/share/OpenCV" CACHE PATH "OpenCV install directory" FORCE)
+  endif()
 endif()
 
-set(ArucoUnity_DIR "${CMAKE_INSTALL_PREFIX}/../../ArucoUnity" CACHE PATH "The ArucoUnity directory" FORCE)
+if(NOT ArucoUnity_DIR)
+  set(ArucoUnity_DIR "${CMAKE_INSTALL_PREFIX}" CACHE PATH "The ArucoUnity directory" FORCE)
+endif()
 
 set(PROJECT_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include" CACHE INTERNAL "The includes directory")
 set(PROJECT_SOURCE_DIR "${CMAKE_SOURCE_DIR}/src" CACHE INTERNAL "The sources directory")
@@ -114,11 +120,16 @@ install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION ${RUNTIME_OUTPUT_DIRECTORY}
 )
 install(TARGETS ${PROJECT_NAME} # Installation of the library in the Unity project folder
+        ARCHIVE DESTINATION ${ArucoUnity_PLUGINS_DIR}
         LIBRARY DESTINATION ${ArucoUnity_PLUGINS_DIR}
         RUNTIME DESTINATION ${ArucoUnity_PLUGINS_DIR}
 )
-if (WIN32) # Installation of the OpenCV dll dependencies on Windows
+if(WIN32) # Installation of the OpenCV dlls
   file(GLOB_RECURSE OpenCV_RUNTIME_LIBS ${OpenCV_LIB_PATH}/../bin/*.dll)
+  install(FILES ${OpenCV_RUNTIME_LIBS} DESTINATION ${ArucoUnity_PLUGINS_DIR})
+elseif(UNIX) # Installation of the OpenCV libs
+  list(GET OpenCV_INCLUDE_DIRS 0 OpenCV_INCLUDE_DIR)
+  file(GLOB_RECURSE OpenCV_RUNTIME_LIBS ${OpenCV_INCLUDE_DIR}/../lib64/*.so)
   install(FILES ${OpenCV_RUNTIME_LIBS} DESTINATION ${ArucoUnity_PLUGINS_DIR})
 endif()
 
