@@ -7,7 +7,7 @@ matrix:
           sources: ubuntu-toolchain-r-test
           packages: 
             - g++-8
-            - p7zip
+            - p7zip-full
       env: MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
 before_install: eval "${MATRIX_EVAL}"
 install: mkdir -p build/opencv/ && cd build/opencv/ && cmake -DCMAKE_INSTALL_PREFIX=install/ -G "Unix Makefiles" ../../3rdparty/opencv_contrib/ && cmake --build . --config Release && cd ../../
