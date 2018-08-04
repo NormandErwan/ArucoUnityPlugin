@@ -11,7 +11,7 @@ matrix:
       env: MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
 before_install: eval "${MATRIX_EVAL}"
 install: mkdir -p build/opencv/ && cd build/opencv/ && cmake -DCMAKE_INSTALL_PREFIX=install/ -G "Unix Makefiles" ../../3rdparty/opencv_contrib/ && cmake --build . --config Release && cd ../../
-script: cd build/ && cmake -DCMAKE_INSTALL_PREFIX=install/ -DOpenCV_DIR=build/opencv/install/share/OpenCV/ -G "Unix Makefiles" .. && cmake --build . --config Release --target install
+script: cd build/ && cmake -DCMAKE_INSTALL_PREFIX=install/ -DOpenCV_DIR=build/opencv/install/share/OpenCV/ -G "Unix Makefiles" .. && cmake --build . --config Release --target install && cd ..
 before_deploy: 7z a ArucoUnityPlugin-$TRAVIS_TAG-Linux.zip ./build/install/*
 deploy:
   provider: releases
