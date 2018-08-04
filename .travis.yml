@@ -10,3 +10,12 @@ matrix:
 before_install: eval "${MATRIX_EVAL}"
 install: mkdir -p build/opencv/ && cd build/opencv/ && cmake -DCMAKE_INSTALL_PREFIX=install/ -G "Unix Makefiles" ../../3rdparty/opencv_contrib/ && cmake --build . --config Release && cd ../../
 script: cd build/ && cmake -DCMAKE_INSTALL_PREFIX=install/ -DOpenCV_DIR=build/opencv/install/share/OpenCV/ -G "Unix Makefiles" .. && cmake --build . --config Release --target install
+before_deploy: cd build/install/ && tar -czvf ArucoUnityPlugin-Linux.zip .
+deploy:
+  provider: releases
+  api_key:
+    secure: "zIN48hQoKCvoY5QKAeMgVrOZ7yJuxNkAsI5JxS81vqa1O+FFo+QYwKeezbgOMkcCSn6LKxt/GHhNvN5AOMBodd3OaC87W4/T+hrnBWK/m7vv4G8IH6L1paF4dtZZQK8Y155QTSlb135gSDdMkoHf6MOPXT3+a2EWK24BvOO8FwEh6OsHhcZScpLWLgMA2huvq8JcVA45xOv3HgSNL/1R1+ogb0qKyETLuFlAHLXLJIjCTNxSpvnR5mWWfsxYJjji4qOLFBPxpKry1zIWITDECZRNWssJ63TKFXgiPYl1mzivYf6X1LxETc5rggLOC5S8flhgsr9AWkhDlDeGmtTo8APG1nf1g3p0S6q7spflPqzHqTazvSHBQMv21KiuiGb8C2gQzOZiOL2qQ3cucatU3kyuJ22O91vyMqs7g6+jhr8jLRXI0TMu4VzJnQMUGub0cpoD23FIYxJSz1P8Ipmxe+lSuuSFIoO5BcPO2N7zCdqRHXxkfEYX6P1oaUS77NeWJs69LZlK7IOXPXs0bg2FgVr8JjZQ3s3muyMY+XcpCJtBqngS9cFM/nfV5wMqej7fOfsZ2wjXG9JstREcxKlb6+9PJ6GZH3zx2eAyqOwRHKVfq48eM//2nmWLG/ZaQ5Bt7CzcM1mxezl8q3qh420LXQRdqfR+wUvgd2x27CEbIls="
+  file: build/install/ArucoUnityPlugin-Linux.zip
+  skip_cleanup: true
+  on:
+    tags: true
