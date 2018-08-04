@@ -1,16 +1,13 @@
 image: Visual Studio 2017
 install: mkdir build\opencv && cd build\opencv && cmake -DCMAKE_INSTALL_PREFIX=install -G "Visual Studio 15 2017 Win64" ..\..\3rdparty\opencv_contrib && cmake --build . --config Release && cd ..\..
 build_script: cd build && cmake -DCMAKE_INSTALL_PREFIX=install -DOpenCV_DIR=build\opencv\install -G "Visual Studio 15 2017 Win64" .. && cmake --build . --config Release --target INSTALL
-after_build: cd build\install && 7z a ArucoUnityPlugin-Windows.zip .
+after_build: 7z a ArucoUnityPlugin-%APPVEYOR_REPO_TAG_NAME%-Windows.zip .\build\install\*
 artifacts:
-  - path: build\install
-    name: ArucoUnityPlugin-Windows
-    type: zip
+  - path: ArucoUnityPlugin-%APPVEYOR_REPO_TAG_NAME%-Windows.zip
 deploy:
   provider: GitHub
-  description: ""
   auth_token:
     secure: qv3r7X7MxUiZsQoWvT+m96XxBuaouO9Ou7REKrQqgXihtDZ+tmWGReo5UHs+UjF+
-  artifact: build\install\ArucoUnityPlugin-Windows.zip
+  artifact: ArucoUnityPlugin-%APPVEYOR_REPO_TAG_NAME%-Windows.zip
   on:
     appveyor_repo_tag: true
