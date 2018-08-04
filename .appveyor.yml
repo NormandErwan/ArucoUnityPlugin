@@ -7,7 +7,7 @@ artifacts:
 deploy:
   provider: GitHub
   auth_token:
-    secure: qv3r7X7MxUiZsQoWvT+m96XxBuaouO9Ou7REKrQqgXihtDZ+tmWGReo5UHs+UjF+
+    secure: +RgKJHGSijrIQHnR0yyAK7/+xoeq0FouIPiEe6Xye7K7ioMJ1W6ksxP9iJ9BZNBV
   artifact: ArucoUnityPlugin-%APPVEYOR_REPO_TAG_NAME%-Windows.zip
   on:
     appveyor_repo_tag: true
