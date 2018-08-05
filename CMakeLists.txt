@@ -129,8 +129,10 @@ if(WIN32) # Installation of the OpenCV dlls
   install(FILES ${OpenCV_RUNTIME_LIBS} DESTINATION ${ArucoUnity_PLUGINS_DIR})
 elseif(UNIX) # Installation of the OpenCV libs
   list(GET OpenCV_INCLUDE_DIRS 0 OpenCV_INCLUDE_DIR)
-  file(GLOB_RECURSE OpenCV_RUNTIME_LIBS FOLLOW_SYMLINKS ${OpenCV_INCLUDE_DIR}/../lib64/*.so)
-  install(FILES ${OpenCV_RUNTIME_LIBS} DESTINATION ${ArucoUnity_PLUGINS_DIR})
+  foreach(lib_folder lib lib64)
+    file(GLOB_RECURSE OpenCV_RUNTIME_LIBS FOLLOW_SYMLINKS ${OpenCV_INCLUDE_DIR}/../${lib_folder}/*)
+    install(FILES ${OpenCV_RUNTIME_LIBS} DESTINATION ${ArucoUnity_PLUGINS_DIR})
+  endforeach()
 endif()
 
 # Package
