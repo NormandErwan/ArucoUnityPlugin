@@ -13,6 +13,7 @@ include(ExternalProject)
 set(OPENCV_CONTRIB_PROJECT OpenCVContrib)
 ExternalProject_Add(${OPENCV_CONTRIB_PROJECT}
   GIT_REPOSITORY https://github.com/opencv/opencv_contrib.git
+  GIT_TAG 3.4.2
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
@@ -24,6 +25,7 @@ set(OPENCV_CONTRIB_PATH ${SOURCE_DIR})
 ExternalProject_Add(${PROJECT_NAME}
   DEPENDS ${OPENCV_CONTRIB_PROJECT}
   GIT_REPOSITORY https://github.com/opencv/opencv.git
+  GIT_TAG 3.4.2
   CMAKE_ARGS
     -DBUILD_opencv_apps=OFF
     -DBUILD_opencv_aruco=ON
