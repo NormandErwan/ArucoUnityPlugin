@@ -7,7 +7,7 @@
 //! @addtogroup mat
 //! \brief n-dimensional dense array class.
 //!
-//! See the OpenCV documentation for more information: http://docs.opencv.org/3.2.0/d3/d63/classcv_1_1Mat.html
+//! See the OpenCV documentation for more information: http://docs.opencv.org/3.4.7/d3/d63/classcv_1_1Mat.html
 //! @{
 
 extern "C" {
@@ -19,31 +19,31 @@ extern "C" {
 
   //! \brief Creates a Mat.
   //!
-  //! \param rows Number of rows. 
-  //! \param cols Number of columns. 
-  //! \param type Array type. 
+  //! \param rows Number of rows.
+  //! \param cols Number of columns.
+  //! \param type Array type.
   ARUCO_UNITY_API cv::Mat* au_cv_Mat_new2(int rows, int cols, int type);
 
   //! \brief Creates a Mat.
   //!
-  //! \param size 2D array size. 
-  //! \param type Array type. 
+  //! \param size 2D array size.
+  //! \param type Array type.
   ARUCO_UNITY_API cv::Mat* au_cv_Mat_new3(cv::Size* size, int type);
 
   //! \brief Creates a Mat.
   //!
-  //! \param rows Number of rows. 
-  //! \param cols Number of columns. 
-  //! \param type Array type. 
-  //! \param data Pointer to the data. The external data is not automatically deallocated, so you should take care of it. 
+  //! \param rows Number of rows.
+  //! \param cols Number of columns.
+  //! \param type Array type.
+  //! \param data Pointer to the data. The external data is not automatically deallocated, so you should take care of it.
   ARUCO_UNITY_API cv::Mat* au_cv_Mat_new8_uchar(int rows, int cols, int type, uchar* data);
 
   //! \brief Creates a Mat.
   //!
-  //! \param rows Number of rows. 
-  //! \param cols Number of columns. 
-  //! \param type Array type. 
-  //! \param data Pointer to the data. The external data is not automatically deallocated, so you should take care of it. 
+  //! \param rows Number of rows.
+  //! \param cols Number of columns.
+  //! \param type Array type.
+  //! \param data Pointer to the data. The external data is not automatically deallocated, so you should take care of it.
   ARUCO_UNITY_API cv::Mat* au_cv_Mat_new8_double(int rows, int cols, int type, double* data);
 
   //! \brief Deletes any Mat.
@@ -89,12 +89,12 @@ extern "C" {
   //! \param exception The first exception threw by any trigerred CV_ASSERT.
   ARUCO_UNITY_API void au_cv_Mat_at_double_set(cv::Mat* mat, int i0, int i1, double value, cv::Exception* exception);
 
-  //! \brief Returns the number of matrix channels. 
+  //! \brief Returns the number of matrix channels.
   //! \param mat The Mat used.
   //! \return The channels number.
   ARUCO_UNITY_API int au_cv_Mat_channels(cv::Mat* mat);
 
-  //! \brief Creates a full copy of the array and the underlying data. 
+  //! \brief Creates a full copy of the array and the underlying data.
   //! \param mat The Mat used.
   //! \return The Mat copy.
   ARUCO_UNITY_API cv::Mat* au_cv_Mat_clone(cv::Mat* mat);
@@ -112,7 +112,7 @@ extern "C" {
   //! \param mat The Mat used.
   ARUCO_UNITY_API size_t au_cv_Mat_elemSize(cv::Mat* mat);
 
-  //! \brief Returns the size of each matrix element channel in bytes. 
+  //! \brief Returns the size of each matrix element channel in bytes.
   //! \param mat The Mat used.
   ARUCO_UNITY_API size_t au_cv_Mat_elemSize1(cv::Mat* mat);
 
@@ -125,7 +125,7 @@ extern "C" {
   ARUCO_UNITY_API int au_cv_Mat_type(cv::Mat* mat);
 
   //! @} Member Functions
-  
+
   //! \name Attributes
   //! @{
 

@@ -10,7 +10,7 @@
 //! @defgroup charuco_board CharucoBoard
 //! \brief A ChArUco board is a planar board where the markers are placed inside the white squares of a chessboard.
 //!
-//! See the OpenCV documentation for more information: http://docs.opencv.org/3.2.0/d0/d3c/classcv_1_1aruco_1_1CharucoBoard.html
+//! See the OpenCV documentation for more information: http://docs.opencv.org/3.4.7/d0/d3c/classcv_1_1aruco_1_1CharucoBoard.html
 //! @{
 
 extern "C" {
@@ -20,7 +20,7 @@ extern "C" {
   //! \brief Deletes any CharucoBoard.
   //! \param charucoBoard The CharucoBoard used.
   ARUCO_UNITY_API void au_CharucoBoard_delete(cv::Ptr<cv::aruco::CharucoBoard>* charucoBoard);
-  
+
   //! @} Constructors & Destructors
 
   //! \name Member Functions
@@ -30,7 +30,7 @@ extern "C" {
   //!
   //! \param charucoBoard The CharucoBoard used.
   //! \param outSize Size of the output image in pixels.
-  //! \param img Output image with the board. The size of this image will be outSize 
+  //! \param img Output image with the board. The size of this image will be outSize
   //!   and the board will be on the center, keeping the board proportions.
   //! \param marginSize Minimum margins (in pixels) of the board in the output image.
   //! \param exception The first exception threw by any trigerred CV_ASSERT.
@@ -64,7 +64,7 @@ extern "C" {
   //! \param dictionary Dictionary of markers indicating the type of markers.
   //! \param exception The first exception threw by any trigerred CV_ASSERT.
   //! \return The output CharucoBoard object.
-  ARUCO_UNITY_API cv::Ptr<cv::aruco::CharucoBoard>* au_CharucoBoard_create(int squaresX, int squaresY, float squareLength, float markerLength, 
+  ARUCO_UNITY_API cv::Ptr<cv::aruco::CharucoBoard>* au_CharucoBoard_create(int squaresX, int squaresY, float squareLength, float markerLength,
     cv::Ptr<cv::aruco::Dictionary>* dictionary, cv::Exception* exception);
 
   //! @} Static Member Functions
@@ -79,7 +79,7 @@ extern "C" {
   //! \brief Sets the chessboard corners.
   //! \param charucoBoard The CharucoBoard used.
   //! \param chessboardCorners The new value.
-  ARUCO_UNITY_API void au_CharucoBoard_setChessboardCorners(cv::Ptr<cv::aruco::CharucoBoard>* charucoBoard, 
+  ARUCO_UNITY_API void au_CharucoBoard_setChessboardCorners(cv::Ptr<cv::aruco::CharucoBoard>* charucoBoard,
     std::vector<cv::Point3f>* chessboardCorners);
 
   //! \brief Returns the nearest marker corners.
@@ -89,7 +89,7 @@ extern "C" {
   //! \brief Sets the nearest marker corners.
   //! \param charucoBoard The CharucoBoard used.
   //! \param nearestMarkerCorners The new value.
-  ARUCO_UNITY_API void au_CharucoBoard_setNearestMarkerCorners(cv::Ptr<cv::aruco::CharucoBoard>* charucoBoard, 
+  ARUCO_UNITY_API void au_CharucoBoard_setNearestMarkerCorners(cv::Ptr<cv::aruco::CharucoBoard>* charucoBoard,
     std::vector<std::vector<int>>* nearestMarkerCorners);
 
   //! \brief Returns the nearest marker idx.
@@ -99,7 +99,7 @@ extern "C" {
   //! \brief Sets the nearest marker idx.
   //! \param charucoBoard The CharucoBoard used.
   //! \param nearestMarkerIdx The new value.
-  ARUCO_UNITY_API void au_CharucoBoard_setNearestMarkerIdx(cv::Ptr<cv::aruco::CharucoBoard>* charucoBoard, 
+  ARUCO_UNITY_API void au_CharucoBoard_setNearestMarkerIdx(cv::Ptr<cv::aruco::CharucoBoard>* charucoBoard,
     std::vector<std::vector<int>>* nearestMarkerIdx);
 
   //! @} Attributes

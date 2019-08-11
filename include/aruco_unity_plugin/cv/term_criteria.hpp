@@ -7,7 +7,7 @@
 //! @addtogroup term_criteria
 //! \brief The class defining termination criteria for iterative algorithms.
 //!
-//! See the OpenCV documentation for more information: http://docs.opencv.org/3.2.0/d9/d5d/classcv_1_1TermCriteria.html
+//! See the OpenCV documentation for more information: http://docs.opencv.org/3.4.7/d9/d5d/classcv_1_1TermCriteria.html
 //! @{
 
 extern "C" {
@@ -21,7 +21,7 @@ extern "C" {
   //!
   //! \param type The type of termination criteria, one of TermCriteria::Type.
   //! \param maxCount The maximum number of iterations or elements to compute.
-  //! \param epsilon The desired accuracy or change in parameters at which the iterative algorithm stops. 
+  //! \param epsilon The desired accuracy or change in parameters at which the iterative algorithm stops.
   ARUCO_UNITY_API cv::TermCriteria* au_cv_TermCriteria_new2(int type, int maxCount, double epsilon);
 
   //! \brief Deletes any TermCriteria.

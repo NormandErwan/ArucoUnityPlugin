@@ -8,9 +8,9 @@
 //! @{
 
 //! @defgroup dictionary Dictionary
-//! \brief Set of markers. 
+//! \brief Set of markers.
 //!
-//! See the OpenCV documentation for more information: http://docs.opencv.org/3.2.0/d5/d0b/classcv_1_1aruco_1_1Dictionary.html.
+//! See the OpenCV documentation for more information: http://docs.opencv.org/3.4.7/d5/d0b/classcv_1_1aruco_1_1Dictionary.html.
 //! @{
 
 extern "C" {
@@ -33,7 +33,7 @@ extern "C" {
   //! \brief Deletes any Dictionary.
   //! \param dictionary The Dictionary used.
   ARUCO_UNITY_API void au_Dictionary_delete(cv::Ptr<cv::aruco::Dictionary>* dictionary);
-  
+
   //! @} Constructors & Destructors
 
   //! \name Member Functions
@@ -42,12 +42,12 @@ extern "C" {
   //! \brief Draw a canonical marker image.
   //!
   //! \param dictionary The Dictionary used.
-  //! \param id The marker id. 
-  //! \param sidePixels The number of pixel per side of the marker. 
+  //! \param id The marker id.
+  //! \param sidePixels The number of pixel per side of the marker.
   //! \param img The marker's pixels returned.
   //! \param borderBits The number of bits forming the marker border.
   //! \param exception The first exception threw by any trigerred CV_ASSERT.
-  ARUCO_UNITY_API void au_Dictionary_drawMarker(cv::Ptr<cv::aruco::Dictionary>* dictionary, int id, int sidePixels, cv::Mat** img, int borderBits, 
+  ARUCO_UNITY_API void au_Dictionary_drawMarker(cv::Ptr<cv::aruco::Dictionary>* dictionary, int id, int sidePixels, cv::Mat** img, int borderBits,
     cv::Exception* exception);
 
   //! \brief Returns the distance of the input bits to the specific id. If allRotations is true, the four posible bits rotation are considered.
@@ -57,9 +57,9 @@ extern "C" {
   //! \param id
   //! \param allRotations
   //! \param exception The first exception threw by any trigerred CV_ASSERT.
-  ARUCO_UNITY_API int au_Dictionary_getDistanceToId(cv::Ptr<cv::aruco::Dictionary>* dictionary, cv::Mat* bits, int id, bool allRotations, 
+  ARUCO_UNITY_API int au_Dictionary_getDistanceToId(cv::Ptr<cv::aruco::Dictionary>* dictionary, cv::Mat* bits, int id, bool allRotations,
     cv::Exception* exception);
-  
+
   //! \brief Given a matrix of bits. Returns whether if marker is identified or not. It returns by reference the correct id (if any) and the correct
   //! rotation.
   //!
@@ -70,11 +70,11 @@ extern "C" {
   //! \param maxCorrectionRate
   //! \param exception The first exception threw by any trigerred CV_ASSERT.
   //! \return Is the marker identified.
-  ARUCO_UNITY_API bool au_Dictionary_identify(cv::Ptr<cv::aruco::Dictionary>* dictionary, const cv::Mat* onlyBits, int* idx, int* rotation, 
+  ARUCO_UNITY_API bool au_Dictionary_identify(cv::Ptr<cv::aruco::Dictionary>* dictionary, const cv::Mat* onlyBits, int* idx, int* rotation,
     double maxCorrectionRate, cv::Exception* exception);
 
   //! @} Member Functions
-  
+
   //! \name Static Member Functions
   //! @{
 

@@ -14,8 +14,8 @@
 
 //! @addtogroup exception
 //! \brief Class passed to an error.
-//! 
-//! See the OpenCV documentation for more information: http://docs.opencv.org/3.2.0/d1/dee/classcv_1_1Exception.html
+//!
+//! See the OpenCV documentation for more information: http://docs.opencv.org/3.4.7/d1/dee/classcv_1_1Exception.html
 //! @{
 
 extern "C" {

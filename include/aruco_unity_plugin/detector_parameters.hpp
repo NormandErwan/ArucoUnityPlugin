@@ -10,7 +10,7 @@
 //! @defgroup detector_parameters DetectorParameters
 //! \brief Parameters for the detectMarker process
 //!
-//! See the OpenCV documentation for more information: http://docs.opencv.org/3.2.0/d1/dcd/structcv_1_1aruco_1_1DetectorParameters.html.
+//! See the OpenCV documentation for more information: http://docs.opencv.org/3.4.7/d1/dcd/structcv_1_1aruco_1_1DetectorParameters.html.
 //! @{
 
 extern "C" {
@@ -19,7 +19,7 @@ extern "C" {
 
   //! \brief Creates a new sets of DetectorParameters with default values.
   ARUCO_UNITY_API cv::Ptr<cv::aruco::DetectorParameters>* au_DetectorParameters_create();
-  
+
   //! \brief Deletes any DetectorParameters.
   //! \param parameters The DetectorParameters used.
   ARUCO_UNITY_API void au_DetectorParameters_delete(cv::Ptr<cv::aruco::DetectorParameters>* parameters);
@@ -28,7 +28,7 @@ extern "C" {
 
   //! \name Variables
   //! @{
-  
+
   //! \brief Returns the minimum window size for adaptive thresholding before finding contours (default 3).
   //! \param parameters The DetectorParameters used.
   ARUCO_UNITY_API int au_DetectorParameters_getAdaptiveThreshWinSizeMin(cv::Ptr<cv::aruco::DetectorParameters>* parameters);

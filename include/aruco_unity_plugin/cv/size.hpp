@@ -7,7 +7,7 @@
 //! @addtogroup size
 //! \brief Class for specifying the size of an image or rectangle.
 //!
-//! See the OpenCV documentation for more information: http://docs.opencv.org/3.2.0/d6/d50/classcv_1_1Size__.html
+//! See the OpenCV documentation for more information: http://docs.opencv.org/3.4.7/d6/d50/classcv_1_1Size__.html
 //! @{
 
 extern "C" {
@@ -18,8 +18,8 @@ extern "C" {
   ARUCO_UNITY_API cv::Size* au_cv_Size_new1();
 
   //! \brief Creates a Size.
-  //! \param width The width value. 
-  //! \param height The height value. 
+  //! \param width The width value.
+  //! \param height The height value.
   ARUCO_UNITY_API cv::Size* au_cv_Size_new2(int width, int height);
 
   //! \brief Deletes any Size.
