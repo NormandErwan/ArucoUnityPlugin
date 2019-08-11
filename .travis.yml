@@ -21,13 +21,13 @@ before_install: if [ "$TRAVIS_OS_NAME" = "linux" ]; then eval "${MATRIX_EVAL}" ;
 install:
   - mkdir -p build/opencv
   - cd build/opencv
-  - cmake -DCMAKE_INSTALL_PREFIX=install -G $GENERATOR ../../3rdparty/opencv_contrib
+  - cmake -DCMAKE_INSTALL_PREFIX=install -G "$GENERATOR" ../../3rdparty/opencv_contrib
   - cmake --build . --config Release
   - cd -
 
 script:
   - cd build/
-  - cmake -DCMAKE_INSTALL_PREFIX=install -DOpenCV_DIR=build/opencv/install/share/OpenCV -G $GENERATOR ..
+  - cmake -DCMAKE_INSTALL_PREFIX=install -DOpenCV_DIR=build/opencv/install/share/OpenCV -G "$GENERATOR" ..
   - cmake --build . --config Release --target install
   - cd -
 
