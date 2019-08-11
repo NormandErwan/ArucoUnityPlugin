@@ -11,9 +11,11 @@ matrix:
             - p7zip-full
       env:
         - GENERATOR="Unix Makefiles"
+        - OPENCV_DIR=build/opencv/install/share/OpenCV
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
     - os: windows
       env:
+        - OPENCV_DIR=build/opencv/install
         - GENERATOR="Visual Studio 15 2017 Win64"
 
 before_install: if [ "$TRAVIS_OS_NAME" = "linux" ]; then eval "${MATRIX_EVAL}" ; fi
@@ -26,8 +28,8 @@ install:
   - cd -
 
 script:
-  - cd build/
-  - cmake -DCMAKE_INSTALL_PREFIX=install -DOpenCV_DIR=build/opencv/install/share/OpenCV -G "$GENERATOR" ..
+  - cd build
+  - cmake -DCMAKE_INSTALL_PREFIX=install -DOpenCV_DIR=$OPENCV_DIR -G "$GENERATOR" ..
   - cmake --build . --config Release --target install
   - cd -
 
@@ -37,7 +39,7 @@ deploy:
   provider: releases
   api_key:
     secure: "KpUBMJm0/xQAhY4/iwtp/Cb/++Gahf6V9v7D79nhcyhocgMGdNMFiG4lu9n5uQnRWf6JNTNS8HeFMNRBi3/bXmx3o1DqleqgEb4+wDqheBJhIy3KUtdXctlEF4I1WZDczo0AxDEG1XfS8OccKVMxzXOc3lcmbcjN9aoYW+k7WqL+1rqAfqYQlXHWDeW6nrHmxUBeT6HlsoQTck0eWq/HbepeWZhOYrZ5LQHoj4KKEYXjiKHdItjfBlPNF6+Own8HI6iYeCplkKC/MJxU/i3tLJehOuG+akmlR4idMfMrJS1k8eFcc9O0+k8fdK161nZLjpbqmtOp6zjX40+UZjZkagWVvtAFVOpiI3ZRWvYCJ7IaL3fjTuAYlqLL1W4BUSMSnDmAND1dKeKXljdm/uz/Alod+xYUOhrfbMSumxSEOQdlvCHksQvGAReF9B1pKtXFQCRm9MnyUyl3g8qqJYtJdd+P0TSFjRCt1QVDrSxoj8H6D3mL8XkcFkANnqwLpp0Ezg4pQE0u0GRPlri+8Ih8r4Kue4pRxr06sNenX3IiPzlcKFC/J+iHXbIY/1oNvfcfMQnpRSmungqofqTJZxpZJhc9VCbIEcULohGsbqnaQNX88FItmOnSQmwFn7Oq+eg5RDTZ6kzlgdcLygY0XjT89GgDF8qo3uBtpmaAs7xd2FE="
-  file: ArucoUnityPlugin-$TRAVIS_TAG-Linux.zip
+  file: ArucoUnityPlugin-$TRAVIS_TAG-$TRAVIS_OS_NAME.zip
   skip_cleanup: true
   on:
     tags: true
