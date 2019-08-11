@@ -22,6 +22,7 @@
 #      - @CMAKE_PROJECT_NAME@_VERSION_PATCH : Patch version part of @CMAKE_PROJECT_NAME@_VERSION. Example: "@VERSION_PATCH@"
 #
 # ===================================================================================
+
 SET(@CMAKE_PROJECT_NAME@_INCLUDE_DIRS "@CMAKE_INSTALL_PREFIX@/include")
 INCLUDE_DIRECTORIES("@CMAKE_INSTALL_PREFIX@/include")
 
