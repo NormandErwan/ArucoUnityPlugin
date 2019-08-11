@@ -9,24 +9,29 @@ matrix:
           packages:
             - g++-8
             - p7zip-full
-      env: MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+      env:
+        - GENERATOR="Unix Makefiles"
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+    - os: windows
+      env:
+        - GENERATOR="Visual Studio 15 2017 Win64"
 
-before_install: eval "${MATRIX_EVAL}"
+before_install: if [ "$TRAVIS_OS_NAME" = "linux" ]; then eval "${MATRIX_EVAL}" ; fi
 
 install:
   - mkdir -p build/opencv
   - cd build/opencv
-  - cmake -DCMAKE_INSTALL_PREFIX=install -G "Unix Makefiles" ../../3rdparty/opencv_contrib
+  - cmake -DCMAKE_INSTALL_PREFIX=install -G $GENERATOR ../../3rdparty/opencv_contrib
   - cmake --build . --config Release
   - cd -
 
 script:
   - cd build/
-  - cmake -DCMAKE_INSTALL_PREFIX=install -DOpenCV_DIR=build/opencv/install/share/OpenCV -G "Unix Makefiles" ..
+  - cmake -DCMAKE_INSTALL_PREFIX=install -DOpenCV_DIR=build/opencv/install/share/OpenCV -G $GENERATOR ..
   - cmake --build . --config Release --target install
   - cd -
 
-before_deploy: 7z a ArucoUnityPlugin-$TRAVIS_TAG-Linux.zip ./build/install/*
+before_deploy: 7z a ArucoUnityPlugin-$TRAVIS_TAG-$TRAVIS_OS_NAME.zip ./build/install/*
 
 deploy:
   provider: releases
